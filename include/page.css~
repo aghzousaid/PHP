@@ -1,0 +1,64 @@
+h1.style {
+	border-width: 2px;
+	border-style: ridge;
+	border-color: #C61405;
+}
+
+.cadre {
+	padding: 5px 5px;
+ 	margin: 10px 5px;
+ }
+
+
+#nav {
+	width:100%;
+	position:relative;
+}
+#nav ul{
+    clear: left;
+    float: left;
+    margin:0;
+    padding:0;
+    position:relative;
+    left:50%;
+
+}
+
+#nav li{
+    float: left;
+}
+
+#nav ul li{
+    position:relative;
+    list-style-type:none;
+    float:left;
+    right:50%;
+
+}
+
+#nav a{
+    text-decoration:none;
+}
+
+#nav ul li a:hover {
+  border-color:crimson;
+  background-color:firebrick;
+} 
+
+
+#nav ul li a {
+	float:left;   
+	width:110px;
+	background-color:grey;
+ 	text-decoration:none;
+ 	text-align:center;
+ 	padding:7px;
+ 	border:3px solid;
+ 	/*pour avoir un effet "outset" avec IE :*/
+ 	border-color:#DCDCDC #696969 #696969 #DCDCDC;
+}
+
+table, td, th {
+	border: 1px solid black;
+}
+

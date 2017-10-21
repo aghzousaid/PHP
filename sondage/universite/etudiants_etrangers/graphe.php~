@@ -1,0 +1,307 @@
+<?php
+
+	session_start();
+
+	if (isset($_SESSION['log']) && isset($_SESSION['pass'])){
+	include ('include/header1.inc.php');
+	echo"<p><br/><br/><br/></p>";
+   echo"<p style=\"text-align: right\">Connecté sous le login «".$_SESSION['log']."»,<a href=\"./logout.php\">(Déconnexion).</a></p>";	
+?>
+
+
+<article>
+	<fieldset style="text-align:center">
+		<?php
+		
+            
+            $oui1=0;
+            $non1=0;
+            $oui2=0;
+            $non2=0;
+            $oui3=0;
+            $non3=0;
+            $oui4=0;
+            $non4=0;
+            $oui5=0;
+            $non5=0;
+            $oui6=0;
+            $non6=0;
+            $oui7=0;
+            $non7=0;
+            $oui8=0;
+            $non8=0;
+          
+
+			for($i=1 ; $i<11; $i++){
+		 		if($fic = fopen("sondage/universite/etudiant_etranger/ucp".$i.".csv", "r+")){
+
+		 		for($j=0;$j<10;$j++){
+	 			$tab=fgetcsv($fic,1024,',');
+
+	 				
+
+	 				if($j==2){
+	 					if($tab[1]=='NON'){
+	 						$non1= $non1+5;
+	 					}
+
+	 					elseif($tab[1]=='OUI'){
+ 							
+	 						$oui1=$oui1+5;
+	 					}
+					}
+	 					
+
+					
+
+					if($j==3){
+	 					if($tab[1]=='NON'){
+	 						$non2= $non2+5;
+	 					}
+
+						elseif($tab[1]=='OUI'){	 
+							$oui2=$oui2+5;
+	 					}
+ 					}
+	 					
+
+ 					if($j==4){
+	 					if($tab[1]=='NON'){
+	 						$non3= $non3+5;
+	 					}
+
+						elseif($tab[1]=='OUI'){	
+	 						$oui3=$oui3+5;
+	 					}
+
+	 				}	
+
+					if($j==5){
+	 					if($tab[1]=='NON'){
+	 						$non4= $non4+5;
+	 					}
+
+ 						elseif($tab[1]=='OUI'){
+	 						$oui4=$oui4+5;
+	 					}
+
+	 				}	
+
+
+ 					if($j==6){
+	 					if($tab[1]=='NON'){
+	 						$non5= $non5+5;
+	 				
+	 					}
+ 						elseif($tab[1]=='OUI'){
+	 						$oui5=$oui5+5;
+	 					}
+
+	 				}	
+
+
+ 					if($j==7){
+	 					if($tab[1]=='NON'){
+	 						$non6= $non6+5;
+	 					}
+
+ 						elseif($tab[1]=='OUI'){
+	 						$oui6=$oui6+5;
+	 					}
+
+	 				}	
+
+
+ 					if($j==8){
+	 					if($tab[1]=='NON'){
+	 						$non7= $non7+5;
+	 					}
+
+ 						elseif($tab[1]=='OUI'){
+	 						$oui7=$oui7+5;
+	 					}
+ 					}
+	 					
+
+
+	 				if($j==9){
+	 					if($tab[1]=='NON'){
+	 						$non8= $non8+5;
+	 					}
+
+ 						elseif($tab[1]=='OUI'){
+	 						$oui8=$oui8+5;
+	 					}
+ 					}
+
+ 				}
+
+ 				}
+
+ 				else{
+
+
+  				echo "Impossible d'acc&eacute;der au fichier.";
+  				}  
+				fclose($fic);
+ 				
+
+		 	}
+
+		 
+		 	
+
+
+
+
+    $s=200;//hauteur svg
+
+    $o1=$s-$oui1;//RECADRAGE pour le OUI
+
+    //print_r($y);
+	$n1=$s-$non1;//RECADRAGE pour le NON
+
+
+	$o2=$s-$oui2;//RECADRAGE pour le OUI
+
+    //print_r($y);
+	$n2=$s-$non2;//RECADRAGE pour le NON
+
+
+	$o3=$s-$oui3;//RECADRAGE pour le OUI
+
+    //print_r($y);
+	$n3=$s-$non3;//RECADRAGE pour le NON
+
+
+	$o4=$s-$oui4;//RECADRAGE pour le OUI
+
+    //print_r($y);
+	$n4=$s-$non4;//RECADRAGE pour le NON
+
+
+	$o5=$s-$oui5;//RECADRAGE pour le OUI
+
+    //print_r($y);
+	$n5=$s-$non5;//RECADRAGE pour le NON
+
+
+    $o6=$s-$oui6;//RECADRAGE pour le OUI
+
+    //print_r($y);
+	$n6=$s-$non6;//RECADRAGE pour le NON
+
+
+	$o7=$s-$oui7;//RECADRAGE pour le OUI
+
+    //print_r($y);
+	$n7=$s-$non7;//RECADRAGE pour le NON
+
+
+    $o8=$s-$oui8;//RECADRAGE pour le OUI
+
+    //print_r($y);
+	$n8=$s-$non8;//RECADRAGE pour le NON
+
+
+ 	// Création d'une image de 250x500 pixels
+    $im = imagecreatetruecolor(600,250);
+    $backgroundcolor=imagecolorallocate($im,0,255, 127);
+    $green = imagecolorallocate($im,0,255,127);
+    $yellow=imagecolorallocate($im,255,255, 0);
+    $orange=imagecolorallocate($im,255,127,0);
+
+
+     //legende
+    $string1="OUI";
+    $string2="NON";
+
+    // Dessine un rectangle blanc
+    imagefilledrectangle($im, 25,$o1,50,200 , $green);
+    imagefilledrectangle($im, 50,$n1,75,200, $yellow);
+    imagestring($im,25,25,0,$string1,$green);
+    imagestring($im,100,50,0,$string2,$yellow);
+    imagestring($im,25,25,15,$oui1,$green);
+    imagestring($im,100,50,15,$non1,$yellow);
+
+
+    imagefilledrectangle($im, 90,$o2,115,200 , $green);
+    imagefilledrectangle($im, 115,$n2,140,200, $yellow);
+    imagestring($im,100,90,0,$string1,$green);
+    imagestring($im,100,115,0,$string2,$yellow);
+    imagestring($im,100,90,15,$oui2,$green);
+    imagestring($im,100,115,15,$non2,$yellow);   
+
+
+
+    imagefilledrectangle($im, 155,$o3,180,200 , $green);
+    imagefilledrectangle($im, 180,$n3,205,200, $yellow);
+    imagestring($im,100,155,0,$string1,$green);
+    imagestring($im,100,180,0,$string2,$yellow);
+ 	imagestring($im,100,155,15,$oui3,$green);
+    imagestring($im,100,180,15,$non3,$yellow);
+
+
+  	imagefilledrectangle($im, 220,$o4,245,200 , $green);
+    imagefilledrectangle($im, 245,$n4,270,200, $yellow);
+    imagestring($im,100,220,0,$string1,$green);
+    imagestring($im,100,245,0,$string2,$yellow);
+    imagestring($im,100,220,15,$oui4,$green);
+    imagestring($im,100,245,15,$non4,$yellow);
+
+    imagefilledrectangle($im, 285,$o5,310,200 , $green);
+    imagefilledrectangle($im, 310,$n5,335,200, $yellow);
+    imagestring($im,100,285,0,$string1,$green);
+    imagestring($im,100,310,0,$string2,$yellow);
+    imagestring($im,100,285,15,$oui5,$green);
+    imagestring($im,100,310,15,$non5,$yellow);
+
+
+
+    imagefilledrectangle($im, 350,$o6,375,200 , $green);
+    imagefilledrectangle($im, 375,$n6,400,200, $yellow);
+    imagestring($im,100,350,0,$string1,$green);
+    imagestring($im,100,375,0,$string2,$yellow);
+    imagestring($im,100,350,15,$oui6,$green);
+    imagestring($im,100,375,15,$non6,$yellow);
+
+
+
+
+    imagefilledrectangle($im, 415,$o7,440,200 , $green);
+    imagefilledrectangle($im, 440,$n7,465,200, $yellow);
+    imagestring($im,100,415,0,$string1,$green);
+    imagestring($im,100,440,0,$string2,$yellow);
+    imagestring($im,100,415,15,$oui7,$green);
+    imagestring($im,100,440,15,$non7,$yellow);
+
+    imagefilledrectangle($im, 480,$o8,505,200 , $green);
+    imagefilledrectangle($im, 505,$n8,530,200, $yellow);
+    imagestring($im,100,480,0,$string1,$green);
+    imagestring($im,100,505,0,$string2,$yellow);
+    imagestring($im,100,480,15,$oui8,$green);
+    imagestring($im,100,505,15,$non8,$yellow);
+    // Sauvegarde l'image
+    imagepng($im, 'imagefilledrectangle.png');
+    echo '<img src="imagefilledrectangle.png" alt="ImageRectangle"/>';
+    imagedestroy($im);
+
+   
+   
+
+	?>
+   </fieldset>
+
+</article>
+
+<?php
+	}
+	else {
+		echo"<p><br/><br/><br/></p>";
+		echo "<p>Les variables ne sont pas déclarées. Vous ne pouvez donc pas accéder au contenu de cette page.
+				<br/> Je vous prie donc de bien vouloir vous diriger vers la page d'accueil afin d'entrer vos identifiants.
+				Pour cela <a href=\"./logout.php\">Cliquez ici</a></p>";
+	}
+	
+	include_once('include/footer.inc.php');
+?>

@@ -1,0 +1,171 @@
+body { 
+	padding-left: 8em;
+   padding-right: 8em; 
+   font-family: Georgia, "Times New Roman",Times, serif;
+   color: #000000;
+   background-color: #FFFFFF;	
+    		}
+
+
+.taille {
+	font-size: 15px;
+	border: 1px solid black;
+	background-color: #CCFFFF;
+	text-align: center;
+	margin-left: 96em;
+
+}
+
+
+nav {
+	width:100%;
+	position:relative;
+}
+nav ul{
+    clear: left;
+    float: left;
+    margin:0;
+    padding:0;
+    position:relative;
+    left:50%;
+
+}
+
+nav li{
+    float: left;
+}
+
+
+nav ul li{
+    position:relative;
+    list-style-type:none;
+    float:left;
+    right:50%;
+
+}
+
+nav a{
+    text-decoration:none;
+}
+
+nav ul li a:hover {
+  border-color:crimson;
+  background-color:#B0C4DE;
+} 
+
+
+nav ul li a {
+	float:left;   
+	width:110px;
+	background-color: #EEE8AA;
+ 	text-decoration:none;
+ 	text-align:center;
+ 	padding:7px;
+ 	border:1px solid;
+ 	/*pour avoir un effet "outset" avec IE :*/
+ 	border-color:#DCDCDC #696969 #696969 #DCDCDC;
+}
+
+#sous_nav {
+	width:100%;
+	position:relative;
+}
+#sous_nav ul{
+    clear: left;
+    float: left;
+    margin:0;
+    padding:0;
+    position:relative;
+    left:50%;
+
+}
+
+#sous_nav li{
+    float: left;
+}
+
+#sous_nav ul li{
+    position:relative;
+    list-style-type:none;
+    float:left;
+    right:50%;
+
+}
+
+#sous_nav a{
+    text-decoration:none;
+}
+
+#sous_nav ul li a:hover {
+  border-color:crimson;
+  background-color:grey;
+} 
+
+
+#sous_nav ul li a {
+	float:left;   
+	width:110px;
+	background-color:#EEE8AA;
+ 	text-decoration:none;
+ 	text-align:center;
+ 	padding:7px;
+ 	border:1px solid;
+ 	/*pour avoir un effet "outset" avec IE :*/
+ 	border-color:#DCDCDC #696969 #696969 #DCDCDC;
+}
+
+table, td, th{
+	border: 1px solid black;
+	text-align:center;
+}
+
+header {
+	height:300px;
+	background-color: #90A090;
+	margin-bottom:10px;
+}
+
+#img {
+   background-image: url("Images/logo_ucp1.png");
+   background-repeat: no-repeat;
+   background-position: left top;
+   margin-right: 50px;
+}
+
+h1 {
+	text-align:center; 
+	font-size:70px;
+}
+
+th { 
+ 	background-color: #9999ff; 
+} 
+            
+.jour { 
+	background-color: #0099ff; 
+  	border-style : solid; 
+  	border-width : 1px; 
+} 
+        
+.donnee { 
+ 	border-style : solid; 
+ 	border-width : 1px; 
+} 
+            
+.actuel { 
+ 	background-color: red; 
+  	border-style : solid; 
+  	border-width : 1px; 
+} 
+ 
+.tab { 
+ 	border-color: white; 
+} 
+
+figcaption {
+	margin-left: 90px;
+}
+
+.deconnecte {
+	background-color: firebrick;
+}

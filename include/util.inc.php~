@@ -1,0 +1,273 @@
+
+<?php
+
+define("LANGUE_DEFAUT","fr");
+define("TODAY_MONTH",date("m"));
+define("TODAY_YEAR",date("Y"));
+
+//Fonction qui affiche la date (TD6) soit en français soit en anglais		
+function affiche_date($lang) {
+	
+	//array dans laquelle chaque valeur en anglais à sa valeur en français
+	$array_jour=array("Sunday"=>"Dimanche","Monday"=>"Lundi","Tuesday"=>"Mardi","Wednesday"=>"Mercredi","Thursday"=>"Jeudi","Friday"=>"Vendredi","Saturday"=>"Samedi");
+	$array_mois=array("January"=>"Janvier","February"=>"Février","March"=>"Mars","April"=>"Avril",
+							"May"=>"Mai","June"=>"Juin","July"=>"Juillet","September"=>"Septembre","October"=>"Octobre","November"=>"Novembre","December"=>"Decembre");
+	
+	$jour=date("l");//retourne le jour
+	$num_jour=date("d");//retourne le numéro du jour
+	$mois=date("F");//retourne la Mois
+	$annee=date("Y");//retourne l'année
+	
+	if($lang=="en"){
+		echo"<p style=\"text-align:right\">";
+		echo $jour.",".$mois." ".$num_jour.",".$annee;
+		echo"</p>";	
+	}
+	else{
+		echo"<p style=\"text-align:left\">";
+		echo $array_jour[$jour]." ".$num_jour." ".$array_mois[$mois]." ".$annee;
+		echo"</p>";	
+	}
+}
+
+  
+
+
+//Fonction qui affiche les sept jours de la semaine en différentes lanques
+function jours_fr_en_es($lang="en") {
+		$liste="<ul style=\"float:left; vertical-align: top\">";
+
+		$jours_fr=array("Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi");
+		$jours_en=array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
+		$jours_es=array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
+		
+		if($lang=="fr"){
+			$affichage=$jours_fr;
+			}
+
+		elseif($lang=="es") {
+			$affichage=$jours_es;
+		}
+		
+		else {
+			$affichage=$jours_en;	
+		}
+		
+		foreach($affichage as $i){
+				$liste.="<li>".$i."</li>";
+			}
+		$liste.="</ul>";	
+		echo"$liste";
+	}
+   
+   
+   
+   
+//Fonction qui affiche les douzes mois de l'année en différebtes langues
+function mois_fr_en_es($lang="en") {
+		$mois_fr=array("Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Septembre","Octobre","Novembre","Decembre");
+		$mois_en=array("January","February","March","April","May","June","July","August","September","October","November","December");
+		$mois_es=array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+		
+		$liste="<ul style=\"margin-left:170px; vertical-align: top; \">";
+		
+		
+		if($lang=="fr"){		
+			$affichage=$mois_fr;
+		}
+			
+		elseif($lang=="es") {
+			$affichage=$mois_es;	
+		}
+		else {
+			$affichage=$mois_en;
+				
+		}
+
+		foreach($affichage as $i){
+				$liste.="<li>".$i."</li>";
+			}
+		$liste.="</ul><hr/>";
+		echo"$liste";
+	}
+	
+ 
+ 
+ 
+ 
+ 
+	//Fonction qui affiche  calendrier sous différents aspect selon les paramètres 
+   function affiche_mois($month = MONTH_DEFAULT, $year = YEAR_DEFAULT) { 
+      if($month < 1 || $month > 12) { 
+      	$month = MONTH_DEFAULT; 
+      } 
+      $result = ""; 
+      $jour_debut = 0; 
+      $ligne = 1; 
+      $jour_titre = array("Lu", "Ma", "Me", "Je", "Ve", "Sa", "Di"); 
+      $jour = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"); 
+     	$mois = array(1=>"Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"); 
+      $result .= "<div><table><tr><th colspan='7'>".$mois[$month]."</th></tr>"; 
+      $result .= "<tr>"; 
+                
+      for($i = 0; $i < 7; $i++) { 
+      	$result .= "<td class='jour' >".$jour_titre[$i]."</td>"; 
+      } 
+      $result .= "</tr><tr>"; 
+                 
+      $premier = date("l", mktime(0, 0, 0, $month, 1, $year)); 
+      $jour_actuel = date("j"); 
+      $mois_actuel = date("n"); 
+      $annee_actuel = date("Y"); 
+                 
+      for($j=0; $j < 7; $j++) { 
+      	if($premier == $jour[$j]) { 
+         	$jour_debut = $j; 
+         } 
+     	} 
+                 
+     	$case = 1; 
+     	for($cpt=1; $cpt <= $jour_debut; $cpt++) { 
+        	$result .= "<td>".'&nbsp;'."</td>"; 
+        	$ligne++; 
+     	} 
+ 
+    	for($cpt=1; $cpt <= 42 - $jour_debut; $cpt++) { 
+       	if($ligne > 7) { 
+          	$result .= "</tr><tr>"; 
+           	$ligne = 1; 
+   		} 
+     		if($mois_actuel == $month && $annee_actuel == $year && $jour_actuel == $cpt) { 
+       		$result .= "<td class='actuel'>".$cpt."</td>"; 
+      	} 
+      	else if($cpt <= strftime("%d", mktime(0, 0, 0, $month+1, 0, $year))) { 
+        		$result .= "<td class='donnee'>".$cpt."</td>"; 
+      	} 
+     		else { 
+        		$result .= "<td>".'&nbsp;'."</td>"; 
+    		} 
+    		$ligne++; 
+ 		} 
+                     
+   	$result .= "</tr></table></div>"; 
+ 		return $result; 
+  	} 
+ 
+ 
+ 	
+   function format_mois($year = null, $ligne = 4) { 
+  		$result = ""; 
+      if(!isset($year)) { 
+    		$result .= format_3mois(); 
+         return $result; 
+      } 
+      if($ligne != 6) { 
+      	$ligne = 4; 
+      } 
+             
+      $cpt = 1; 
+      $colonne = 0; 
+      $result .= "<table class='tab'>"; 
+      $result .= "<tr><th colspan='".$ligne."'>".$year."</th></tr><tr>"; 
+      for($i = 1; $i <= 12; $i++) { 
+        	if($colonne == $ligne) { 
+           	$result .= "</tr><tr>"; 
+           	$colonne = 1; 
+        	} 
+     		else { 
+        		$colonne++; 
+      	} 
+      	$result .= "<td>".affiche_mois($i, $year)."</td>"; 
+    	 } 
+       $result .= "</tr>"; 
+       $result .= "</table>"; 
+       return $result; 
+  	} 
+ 
+ 
+ 
+   function format_3mois() { 
+     	$result = ""; 
+    	$result .= "<table class='tab'><tr>"; 
+      $result .= "<td>".affiche_mois(MONTH_DEFAULT, YEAR_DEFAULT)."</td>"; 
+     	$result .= "<td>".affiche_mois(MONTH_DEFAULT +1, YEAR_DEFAULT)."</td>"; 
+      $result .= "<td>".affiche_mois(MONTH_DEFAULT +2, YEAR_DEFAULT)."</td>"; 
+      $result .= "</tr></table>"; 
+      return $result; 
+  	} 
+  	
+  	
+  	function compteur_visite(){
+		if (file_exists('compteur_visites.txt')) {
+			$fp = fopen("compteur_visites.txt","r+");
+			$nbvisites = fgets($fp);
+		
+		}
+		else{
+			$fp = fopen("compteur_visites.txt","a+");
+			$nbvisites = 0;
+		
+		}
+
+		if ($nbvisites=="") {
+			$nbvisites = 0;
+		}
+		$nbvisites++;
+
+		//ou rewind();
+		fseek($fp,0);
+		fputs($fp,$nbvisites);
+		fclose($fp);
+		echo "Cette page a été visité".$nbvisites." fois"; 
+	}
+	
+	
+	
+	
+	
+	function imageDynamique ($i) {
+		// Ouvre un dossier bien connu, et liste tous les fichiers 
+		$directory = $i; 
+		
+		// Définition d'$image comme tableau 
+		$image = array(); 
+		
+		//on vérifie s’il s’agit bien d’un répertoire 
+		if (is_dir($directory)) { 
+		
+			//on ouvre le repertoire 
+			if ($dh = opendir($directory)) { 
+			
+				//Lit une entrée du dossier et readdir retourne le nom du fichier 
+				while (($file = readdir($dh)) !== false) { 
+					
+					// Vérifie de ne pas prendre en compte les dossier ... 
+					if ($file != '...' && $file != '..' && $file != '.') { 
+					
+						// On ajoute le nom du fichier dans le tableau 
+						$image[] = $file; 
+					}
+				} 
+				
+				//On ferme le repertoire 
+				closedir($dh); 
+				
+				// On récupère le nombre d'image total 
+				$total = count($image)-1; 
+				
+				// On prend une valeur au hasard entre 1 et le nombre total d'images 
+				$aleatoire = rand(0, $total); 
+
+				
+				// On récupère le nom de l'image avec le chiffre hasard 
+				$image_afficher = "$image[$aleatoire]"; 
+				
+				// Affiche l'image du hasard :p 
+				$titre=pathinfo($image_afficher, PATHINFO_FILENAME);
+				print '<img src="'.$directory.$image_afficher.'"  alt="'.pathinfo($image_afficher, PATHINFO_FILENAME).'" />';
+				echo '<figcaption>'.$titre.'</figcaption>'; 
+			} 
+		}
+	}
+
+?>

@@ -1,0 +1,40 @@
+<?php
+
+function mois($lang) {	
+	
+		$mois_fr=array("Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre");
+		$mois_en=array("January","February","March","April","May","June","July","August","September","October","November","December");
+		$mois_es=array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+		
+		//$table="<table>";
+		
+		if($lang="en" || $lang="fr" || $lang="es") {
+			echo"<table border=\"1 solid grey\">";
+			echo"<tr>";
+			echo"<th>"."Mois en anglais"."</th>"."<th>"."Mois en francais"."</th>"."<th>"."Mois en espagnols"."</th>";
+			echo"</tr>";
+			
+			for($index = 0 ; $index < 12 ; $index++ ) {
+				$lang="en";	
+				$affichage=$mois_en;
+				echo"<tr>";	
+				echo"<td>".$mois_en[$index]."</td>";	
+			
+				$lang="fr";
+				$affichage=$mois_fr;			
+				echo"<td>".$mois_fr[$index]."</td>";
+				
+		
+				$lang="es";
+				$affichage=$mois_es;
+				echo"<td>".$mois_es[$index]."</td>";
+				
+				echo"</tr>";
+				
+			}
+			
+			echo"</table>";
+		}
+}
+		
+?>

@@ -1,0 +1,80 @@
+<?php
+	require_once 'styles/styleswitcher.inc.php';
+?>
+
+<!DOCTYPE html>
+
+<html>
+	
+	<head>
+		<title>Page d'accueil du formulaire</title>
+		<meta charset="UTF-8"/>
+		<link href="<?php echo $url;?>" rel="stylesheet" type="text/css" title="Design" media="screen" />	
+
+				
+		<style type="text/css">
+		
+			p {
+				display:block;
+			}
+			
+			#span {
+    			float: left;
+    			width: 0.7em;
+    			font-size: 400%;
+    			font-family: Georgia, "Times New Roman",Times, serif;
+    			line-height: 80%;
+			}
+			
+		
+			.style {
+				text-align:center;
+				font-size:55px; 
+				margin-left:3em; 
+				margin-right:3em;
+			}
+		
+    		#img {
+    			background-image: url("Images/logo_ucp.png");
+    			background-repeat: no-repeat;
+    			background-position: right top;
+    			margin-right: 50px;
+    		}
+			
+ 			h2 {
+ 				font-size: 110%;
+ 				padding:10px;
+ 				background-color:#CCFFFF;
+ 				text-align: center;
+ 			}
+
+ 		</style>
+	</head>
+	
+	<body> 
+		
+		<header id="img">
+		<p><br/><br/></p>
+		<aside style="float:left">
+			<h3 style="text-align:center">Thèmes</h3>
+			<ul id="styleswitcher">
+   			<li><a href="<?php echo $actuel; ?>?style=defaut">Palegoldenrod</a></li>
+      		<li><a href="<?php echo $actuel; ?>?style=alternatif">Basic</a></li>
+   		</ul>
+		</aside>
+			
+		<h1 class="style">Page d'accueil !</h1>
+		<h3 style="font-style:oblique; text-align:center"> Aghzou Said & Doucouré Oussy</h3>
+		
+		<nav>
+			<ul>
+				<li><a href="index.php">Page d'accueil</a></li>
+  				<li><a href="contact.php">Contact</a></li>
+  				<li><a href="rapport.php">Présentation</a></li>
+  				<li><a href="connexion.php">Connexion</a></li>
+			</ul>
+		</nav>
+		
+		</header>
+		
+		
